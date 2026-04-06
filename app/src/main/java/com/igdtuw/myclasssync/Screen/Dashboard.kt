@@ -1,6 +1,7 @@
 package com.igdtuw.myclasssync.Screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.DragInteraction
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.requiredWidthIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -20,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -52,7 +55,8 @@ fun Dashboard(){
                 Text(
                     text = "DashBoard",
                     fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily(Font(R.font.nunito_light)),
+                    fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                    color = colorResource(id= R.color.dark_grey),
                     fontSize = 26.sp
                 )
             }
@@ -66,11 +70,23 @@ fun Dashboard(){
                 modifier = Modifier.fillMaxWidth(0.489f)
                     .height(150.dp),
                 colors =ButtonDefaults.buttonColors(containerColor= colorResource(id= R.color.off_white))
-
             ) {
-                Text(
-                    text= ""
-                )
+
+                Box(
+                    modifier = Modifier.fillMaxSize()
+                        .padding(10.dp),
+                        contentAlignment= Alignment.TopStart
+                ) {
+                    Spacer(modifier= Modifier.height(30.dp))
+                    Text(
+                        text= "Assingment",
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily(Font(R.font.nunito_semibold)),
+                        fontSize = 20.sp,
+                        color = colorResource(id = R.color.olive),
+                        )
+                }
+
             }
             Spacer(modifier = Modifier.width(15.dp))
             Button(
