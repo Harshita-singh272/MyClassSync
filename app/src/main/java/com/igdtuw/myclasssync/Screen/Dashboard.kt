@@ -63,9 +63,13 @@ import com.igdtuw.myclasssync.R
 
 fun Dashboard(){
     var x: Int = 2
-    var  present :Int = 50;
-    var  Total   :Int = 77;
+    var  present:Int = 50;
+    var  Total  :Int = 77;
     val context = LocalContext.current
+    var assignment : String  = "No pending assignments"
+    var thisweekannouncements : Int = 4
+    var lastweekannouncements : Int =7
+    var Branch : String = "CSE-1"
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -115,13 +119,34 @@ fun Dashboard(){
                             bottom = 5.dp),
                         contentAlignment= Alignment.TopStart
                 ) {
-                    Spacer(modifier= Modifier.height(30.dp))
-                    Text(
-                        text= "Assignment",
-                        fontFamily = FontFamily(Font(R.font.nunito_bold)),
-                        fontSize = 25.sp,
-                        color = colorResource(id = R.color.dark_grey),
-                        )
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        Row() {
+                            Spacer(modifier = Modifier.height(5.dp))
+                            Text(
+                                text = "Assignment",
+                                fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                                fontSize = 25.sp,
+                                color = colorResource(id = R.color.dark_grey),
+                            )
+                            Spacer(modifier = Modifier.width(130.dp))
+                            Icon(
+                                painter = painterResource(id = R.drawable.assignment),
+                                contentDescription = null,
+                                modifier = Modifier.size(size = 40.dp)
+                                    .align(Alignment.Top),
+                                tint = colorResource(id = R.color.olive)
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(30.dp))
+                        Text (
+                            text="$assignment",
+                            fontSize = 17.sp,
+                            color = colorResource(id = R.color.grey),
+                            fontFamily = FontFamily(Font(R.font.nunito_light)),
+                            fontWeight = FontWeight.Bold
+                            )
+
+                    }
                 }
             }
         }
@@ -147,20 +172,31 @@ fun Dashboard(){
                         .fillMaxSize()
                         .padding(16.dp)
                 ) {
-                    Text(
-                        modifier = Modifier.padding(
-                            top = 10.dp,
-                            start = 10.dp,
-                            end = 5.dp,
-                            bottom = 5.dp
-                        ),
-                        text = "Syllabus",
-                        fontFamily = FontFamily(Font(R.font.nunito_bold)),
-                        fontSize = 25.sp,
-                        color = colorResource(id = R.color.dark_grey),
-                    )
+                    Row() {
+                        Text(
+                            modifier = Modifier.padding(
+                                top = 5.dp,
+                                start = 10.dp,
+                                end = 5.dp,
+                                bottom = 5.dp
+                            ),
+                            text = "Syllabus",
+                            fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                            fontSize = 25.sp,
+                            color = colorResource(id = R.color.dark_grey),
+                        )
+                        Spacer(modifier = Modifier.width(160.dp))
+                        Icon(
+                            painter = painterResource(id = R.drawable.syllabus),
+                            contentDescription = null,
+                            modifier = Modifier.size(size = 40.dp)
+                                .align(Alignment.Top),
+                            tint = colorResource(id = R.color.olive)
+                        )
+                    }
+
                     Spacer(modifier = Modifier.height(4.dp))
-                    drop()
+                    syllabusdrop()
                     Button(
                         onClick={Toast.makeText(context, "Loading" , Toast.LENGTH_SHORT).show()},
                         shape = RoundedCornerShape(15.dp),
@@ -205,7 +241,7 @@ fun Dashboard(){
                                 fontSize = 25.sp,
                                 color = colorResource(id = R.color.dark_grey),
                             )
-                            Spacer(modifier = Modifier.width(170.dp))
+                            Spacer(modifier = Modifier.width(175.dp))
                             Icon(
                                 painter = painterResource(id = R.drawable.events),
                                 contentDescription = null,
@@ -291,41 +327,57 @@ fun Dashboard(){
                         Row() {
                             Spacer(modifier = Modifier.width(15.dp))
                             Text(
-                                text = "Total :",
+                                text = "Branch :",
                                 color = colorResource(id = R.color.grey),
                                 fontSize = 18.sp,
-                                fontFamily = FontFamily(Font(R.font.nunito_light)),
-                                fontWeight = FontWeight.Bold
+                                fontFamily = FontFamily(Font(R.font.nunito_semibold)),
+                                fontWeight = FontWeight.SemiBold
                             )
-                            Spacer(modifier = Modifier.width(25.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
                             Text(
-                                text = "$Total",
+                                text = "$Branch",
                                 color = colorResource(id = R.color.grey),
-                                fontSize = 17.sp,
+                                fontSize = 15.sp,
                                 fontFamily = FontFamily(Font(R.font.nunito_light)),
                                 fontWeight = FontWeight.Bold
                             )
                         }
                     }
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(5.dp))
                         Box(modifier= Modifier.fillMaxWidth()) {
                             Row() {
                                 Spacer(modifier = Modifier.width(15.dp))
                                 Text(
-                                    text = "Present :",
+                                    text = "Total Strength :",
                                     color = colorResource(id = R.color.grey),
                                     fontSize = 18.sp,
-                                    fontFamily = FontFamily(Font(R.font.nunito_light)),
-                                    fontWeight = FontWeight.Bold
+                                    fontFamily = FontFamily(Font(R.font.nunito_semibold)),
+                                    fontWeight = FontWeight.SemiBold
                                 )
                                 Spacer(modifier = Modifier.width(5.dp))
                                 Text(
-                                    text = "$present",
+                                    text = "$Total",
                                     color = colorResource(id = R.color.grey),
-                                    fontSize = 17.sp,
+                                    fontSize = 15.sp,
                                     fontFamily = FontFamily(Font(R.font.nunito_light)),
                                     fontWeight = FontWeight.Bold
                                 )
+//                                Spacer(modifier = Modifier.width(25.dp))
+//                                Text(
+//                                    text = "Present :",
+//                                    color = colorResource(id = R.color.grey),
+//                                    fontSize = 18.sp,
+//                                    fontFamily = FontFamily(Font(R.font.nunito_semibold)),
+//                                    fontWeight = FontWeight.SemiBold
+//                                )
+//                                Spacer(modifier = Modifier.width(5.dp))
+//                                Text(
+//                                    text = "$present",
+//                                    color = colorResource(id = R.color.grey),
+//                                    fontSize = 17.sp,
+//                                    fontFamily = FontFamily(Font(R.font.nunito_light)),
+//                                    fontWeight = FontWeight.Bold
+//                                )
                             }
                         }
 
@@ -353,76 +405,181 @@ fun Dashboard(){
                         ),
                     contentAlignment = Alignment.TopStart
                 ) {
-                    Row() {
-                        Spacer(modifier = Modifier.height(30.dp))
-                        Text(
-                            text = "Announcements",
-                            fontFamily = FontFamily(Font(R.font.nunito_bold)),
-                            fontSize = 25.sp,
-                            color = colorResource(id = R.color.dark_grey),
-                        )
-                        Spacer(modifier = Modifier.width(80.dp))
-                        Icon(
-                            painter = painterResource(id= R.drawable.bell),
-                            contentDescription = null,
-                            tint = colorResource(id= R.color.olive),
-                            modifier = Modifier.size(size=40.dp)
-                        )
+                    Column() {
+                        Row() {
+                            Spacer(modifier = Modifier.height(30.dp))
+                            Text(
+                                text = "Announcements",
+                                fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                                fontSize = 25.sp,
+                                color = colorResource(id = R.color.dark_grey),
+                            )
+                            Spacer(modifier = Modifier.width(80.dp))
+                            Icon(
+                                painter = painterResource(id = R.drawable.bell),
+                                contentDescription = null,
+                                tint = colorResource(id = R.color.olive),
+                                modifier = Modifier.size(size = 40.dp)
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Box(
+                            modifier= Modifier.fillMaxWidth()
+                        ) {
+                            Row() {
+                                Spacer(modifier = Modifier.width(15.dp))
+                                Text(
+                                    text = "This Week :",
+                                    color = colorResource(id = R.color.grey),
+                                    fontSize = 18.sp,
+                                    fontFamily = FontFamily(Font(R.font.nunito_light)),
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(17.dp))
+                                Text(
+                                    text = "$thisweekannouncements announcements",
+                                    color = colorResource(id = R.color.grey),
+                                    fontSize = 17.sp,
+                                    fontFamily = FontFamily(Font(R.font.nunito_light)),
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Box(modifier= Modifier.fillMaxWidth()) {
+                            Row() {
+                                Spacer(modifier = Modifier.width(15.dp))
+                                Text(
+                                    text = "Last Week :",
+                                    color = colorResource(id = R.color.grey),
+                                    fontSize = 18.sp,
+                                    fontFamily = FontFamily(Font(R.font.nunito_light)),
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.width(17.dp))
+                                Text(
+                                    text = "$lastweekannouncements announcements",
+                                    color = colorResource(id = R.color.grey),
+                                    fontSize = 17.sp,
+                                    fontFamily = FontFamily(Font(R.font.nunito_light)),
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
                     }
                 }
             }
         }
         item {
+//            Spacer(modifier = Modifier.height(10.dp))
+//            Button(
+//                onClick = {},
+//                elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
+//                shape = RoundedCornerShape(15.dp),
+//                modifier = Modifier.fillMaxWidth(0.97f)
+//                    .height(155.dp)
+//                    .padding(5.dp),
+//                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.off_white))
+//            ) {
+//                Box(
+//                    modifier = Modifier.fillMaxSize()
+//                        .padding(
+//                            top = 10.dp,
+//                            start = 5.dp,
+//                            end = 5.dp,
+//                            bottom = 5.dp
+//                        ),
+//                    contentAlignment = Alignment.TopStart
+//                ) {
+//                    Spacer(modifier = Modifier.height(30.dp))
+//                    Text(
+//                        text = "Timetable",
+//                        fontFamily = FontFamily(Font(R.font.nunito_bold)),
+//                        fontSize = 25.sp,
+//                        color = colorResource(id = R.color.dark_grey),
+//                    )
+//                }
+//            }
             Spacer(modifier = Modifier.height(10.dp))
-            Button(
-                onClick = {},
-                elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
-                shape = RoundedCornerShape(15.dp),
+            Box(
                 modifier = Modifier.fillMaxWidth(0.97f)
-                    .height(155.dp)
-                    .padding(5.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.off_white))
-            ) {
-                Box(
-                    modifier = Modifier.fillMaxSize()
-                        .padding(
-                            top = 10.dp,
-                            start = 5.dp,
-                            end = 5.dp,
-                            bottom = 5.dp
-                        ),
-                    contentAlignment = Alignment.TopStart
-                ) {
-                    Spacer(modifier = Modifier.height(30.dp))
-                    Text(
-                        text = "Timetable",
-                        fontFamily = FontFamily(Font(R.font.nunito_bold)),
-                        fontSize = 25.sp,
-                        color = colorResource(id = R.color.dark_grey),
+                    .heightIn(min = 205.dp)
+                    .padding(5.dp)
+                    .shadow(
+                        elevation = 5.dp,
+                        shape = RoundedCornerShape(15.dp),
+                        clip = false
                     )
+                    .background(
+                        color = colorResource(id = R.color.off_white),
+                        shape = RoundedCornerShape(15.dp)
+                    ),
+                contentAlignment = Alignment.TopStart
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                ) {
+                    Row() {
+                        Text(
+                            modifier = Modifier.padding(
+                                top = 5.dp,
+                                start = 10.dp,
+                                end = 5.dp,
+                                bottom = 5.dp
+                            ),
+                            text = "TimeTable",
+                            fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                            fontSize = 25.sp,
+                            color = colorResource(id = R.color.dark_grey),
+                        )
+                        Spacer(modifier = Modifier.width(140.dp))
+                        Icon(
+                            painter = painterResource(id = R.drawable.timetable),
+                            contentDescription = null,
+                            modifier = Modifier.size(size = 40.dp)
+                                .align(Alignment.Top),
+                            tint = colorResource(id = R.color.olive)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(4.dp))
+                    timetabledrop()
+                    Button(
+                        onClick={Toast.makeText(context, "Loading" , Toast.LENGTH_SHORT).show()},
+                        shape = RoundedCornerShape(15.dp),
+                        modifier = Modifier.padding(start = 240.dp),
+                        colors = ButtonDefaults.buttonColors(colorResource(id =R.color.olive))
+                    ) {
+                        Text(
+                            text = "Open",
+                            fontFamily = FontFamily(Font(R.font.nunito_semibold))
+                        )
+                    }
                 }
             }
         }
     }
 }
 @Composable
-fun drop(){
+fun syllabusdrop(){
     var expanded by remember {
         mutableStateOf(false)
     }
     var selectsubject by remember {
-        mutableStateOf("Mobile Application Development")
+        mutableStateOf("Please choose your subject")
     }
     Box(
         modifier = Modifier.padding(10.dp)
             .fillMaxWidth()
-            .border(2.dp, color = colorResource(id =R.color.sage_green))
+            .border(2.dp, color = colorResource(id =R.color.sage_green), shape = RoundedCornerShape(10.dp))
     ){
         Text(
             text = selectsubject,
             modifier = Modifier.align(Alignment.Center),
             fontSize = 16.sp,
-            color = Color.Black
+            color = colorResource(id= R.color.dark_grey)
         )
         IconButton(onClick = {expanded = !expanded }) {
             Icon(
@@ -430,7 +587,7 @@ fun drop(){
                 contentDescription = "Subjects",
                 modifier = Modifier.fillMaxWidth()
                 .padding(10.dp),
-                tint = colorResource(id = R.color.sage_green)
+                tint = colorResource(id = R.color.olive)
             )
         }
 //    }
@@ -481,5 +638,47 @@ fun drop(){
             }
         )
     }
+    }
+}
+@Composable
+fun timetabledrop(){
+    var expanded by remember {
+        mutableStateOf(false)
+    }
+    var branch by remember {
+        mutableStateOf("Choose your subject")
+    }
+    Box(
+        modifier = Modifier.padding(10.dp)
+            .fillMaxWidth()
+            .border(2.dp, color = colorResource(id =R.color.sage_green) , shape = RoundedCornerShape(15.dp))
+    ){
+        Text(
+            text = branch,
+            modifier = Modifier.align(Alignment.Center),
+            fontSize = 16.sp,
+            color = colorResource(id= R.color.dark_grey)
+        )
+        IconButton(onClick = {expanded = !expanded }) {
+            Icon(
+                Icons.Default.ArrowDropDown,
+                contentDescription = "Subjects",
+                modifier = Modifier.fillMaxWidth()
+                    .padding(10.dp),
+                tint = colorResource(id = R.color.sage_green)
+            )
+        }
+//    }
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            listOf("   Cse-1   ", "   Cse-2   ", "   Cse-3   ", "   CseAi-1   ", "   CseAi-2   ", "   CseAi-3   ").forEach { B ->
+                DropdownMenuItem(text = { Text(text = B) }, onClick = {
+                    branch = B
+                    expanded = false
+                })
+            }
+        }
     }
 }
